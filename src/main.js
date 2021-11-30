@@ -22,6 +22,9 @@ class ViewCardsSpriteUse extends Phaser.Scene {
 
   create() {
     this.add.image(400, 300, "background");
+    var spaceKey = this.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.SPACE
+    );
 
     firstGroup = this.add.group({
       key: "cards",
@@ -43,8 +46,18 @@ class ViewCardsSpriteUse extends Phaser.Scene {
         frames: [genRandomCard(0, 53)],
       }),
       frameRate: 4,
+      // repeat: -1,
     };
-    // repeat: -1,};
+
+    spaceKey.on("down", function (key, event) {
+      console.log(secondGroup);
+      // this.GetScreenOrientation(100, 200);
+      // secondGroup
+      // this.anims.create(flipCard);
+      // console.log(secondGroup);
+      // secondGroup.anims.play("click");
+    });
+
     // this.anims.create({
     //   key: "click",
     //   frames: this.anims.generateFrameNumbers("cards", {
@@ -55,15 +68,13 @@ class ViewCardsSpriteUse extends Phaser.Scene {
     // });
 
     this.input.on("pointerdown", function () {
-      firstGroup.anims.create(flipCard);
-      // console.log(firstGroup.children.entries[0].anims.create(flipCard));/
-      // console.log(this);
-      // firstGroup.clear(true, true);
+      // this.anims.create(flipCard);
+      firstGroup.clear(true, true);
     });
-    // console.log(firstGroup);
-    // console.log(cody);
   }
-  update() {}
+  update() {
+    // resetCollisionIDs()
+  }
 }
 
 const gameConfig = {
@@ -73,4 +84,4 @@ const gameConfig = {
   scene: [ViewCardsSpriteUse],
 };
 
-new Phaser.Game(gameConfig);
+let game = new Phaser.Game(gameConfig);
